@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import User from "../UserList/UserList";
+import "./Home.css"
 
 const HomePage = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -27,7 +29,9 @@ const HomePage = () => {
 
         {/* دکمه‌های ورود و ثبت‌نام فقط در حالت دسکتاپ */}
         <div className="mr-auto hidden lg:flex gap-2">
-          <button className="bg-blue-500 text-white px-4 py-2 rounded">ورود</button>
+          <button className="bg-blue-500 text-white px-4 py-2 rounded">
+            ورود
+          </button>
           <button className="bg-gray-300 px-4 py-2 rounded">ثبت‌نام</button>
         </div>
       </header>
@@ -48,10 +52,18 @@ const HomePage = () => {
       >
         <h3 className="text-lg font-semibold mb-4">دسته‌بندی‌ها</h3>
         <ul className="space-y-2">
-          <li><button className="text-blue-700 hover:underline">خودرو</button></li>
-          <li><button className="text-blue-700 hover:underline">املاک</button></li>
-          <li><button className="text-blue-700 hover:underline">دیجیتال</button></li>
-          <li><button className="text-blue-700 hover:underline">استخدام</button></li>
+          <li>
+            <button className="text-blue-700 hover:underline">خودرو</button>
+          </li>
+          <li>
+            <button className="text-blue-700 hover:underline">املاک</button>
+          </li>
+          <li>
+            <button className="text-blue-700 hover:underline">دیجیتال</button>
+          </li>
+          <li>
+            <button className="text-blue-700 hover:underline">استخدام</button>
+          </li>
         </ul>
       </aside>
 
@@ -87,6 +99,7 @@ const HomePage = () => {
           <span className="text-green-600 font-bold">۳۵۰٬۰۰۰ تومان</span>
         </div>
       </section>
+      <User />
     </div>
   );
 };

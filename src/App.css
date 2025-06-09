@@ -1,3 +1,11 @@
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css'); 
+body {
+  font-family: 'Vazirmatn', sans-serif;
+}
+
+html, body, #root, .app {
+  font-family: 'Vazirmatn', sans-serif;
+}
 .App {
   text-align: center;
 }

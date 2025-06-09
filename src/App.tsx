@@ -1,13 +1,17 @@
 import React from "react";
-import Header from "./components/Common/Header";
-import Home from "./pages/Home";
-import HomePage from "./pages/Home";
+import HomePage from "./pages/Home/Home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login/Login";
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100">
-      <HomePage /> 
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/home" element={<HomePage />} />
+        {/* اگر صفحات دیگه هم داشتی اینجا اضافه کن */}
+      </Routes>
+    </BrowserRouter>
   );
 }
 
