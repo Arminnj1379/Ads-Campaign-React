@@ -3,17 +3,16 @@ import axios from "axios";
 
 // 🔧 ساخت یک instance از Axios
 const api = axios.create({
-  baseURL: "http://192.168.0.40:85/api/adscampaign", // آدرس API شما
+  baseURL: "http://192.168.0.40:85/api/adscampaign",
   timeout: 10000, // زمان انتظار حداکثر 10 ثانیه
   headers: {
     "Content-Type": "application/json",
   },
 });
-
-// 📡 Interceptor برای اضافه کردن توکن قبل از هر درخواست
+// Interceptor برای اضافه کردن توکن قبل از هر درخواست
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token"); // 👉 توکن رو از localStorage بگیر
+    const token = localStorage.getItem("token");
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
     }
@@ -38,6 +37,9 @@ api.interceptors.response.use(
 
     switch (status) {
       case 401:
+        localStorage.removeItem("token");
+        const event = new Event("unauthorized");
+        window.dispatchEvent(event);
         console.error("❌ شما مجاز نیستید. لطفاً مجدداً وارد شوید.");
         // مثلاً redirect به صفحه login
         // window.location.href = '/login';

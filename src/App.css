@@ -36,6 +36,43 @@ html, body, #root, .app {
   color: #61dafb;
 }
 
+/* استایل عمومی popup */
+.custom-swal-popup {
+  background-color: #fff !important;
+  color: #000 !important;
+  font-family: 'Tahoma', sans-serif;
+}
+
+/* استایل دکمه تأیید */
+.custom-swal-confirm {
+  background-color: #d33 !important;
+  border: none !important;
+  color: white !important;
+  font-size: 1rem !important;
+  padding: 0.5em 1.2em !important;
+  border-radius: 4px !important;
+}
+
+.custom-swal-confirm:hover {
+  background-color: #c12e2a !important;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* استایل دکمه انصراف */
+.custom-swal-cancel {
+  background-color: #6c757d !important;
+  border: none !important;
+  color: white !important;
+  font-size: 1rem !important;
+  padding: 0.5em 1.2em !important;
+  border-radius: 4px !important;
+}
+
+.custom-swal-cancel:hover {
+  background-color: #5a6268 !important;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -43,4 +80,63 @@ html, body, #root, .app {
   to {
     transform: rotate(360deg);
   }
+}
+
+/* styles.css */
+body {
+  direction: rtl;
+  font-family: "Vazir", sans-serif; /* فونت فارسی */
+}
+
+.container {
+  max-width: 1200px;
+}
+
+.grid-cols-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.rounded {
+  border-radius: 8px;
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bg-gray-800 {
+  background-color: #2d3748;
+}
+
+.text-white {
+  color: white;
+}
+
+.text-gray-400 {
+  color: #a0aec0;
+}
+
+.text-red-500 {
+  color: #f87171;
+}
+
+.text-green-400 {
+  color: #2dd4bf;
+}
+
+.border-gray-700 {
+  border-color: #4a5568;
+}
+
+.w-40 {
+  width: 100px;
+}
+
+.h-40 {
+  height: 100px;
+}
+
+.object-cover {
+  object-fit: cover;
 }

@@ -1,9 +1,10 @@
 // src/components/Login.js
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import loginapi from "../../api/loginService"
+import loginapi from "../../api/loginService";
+import AuthLoader from "../../components/AuthLoader/AuthLoader";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -12,6 +13,13 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/home");
+    }
+  }, [navigate]);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -21,7 +29,7 @@ const Login = () => {
     }
 
     try {
-      debugger
+      debugger;
       const response = await loginapi.post("/auth/login", {
         UserName: username,
         Password: password,
@@ -31,7 +39,7 @@ const Login = () => {
       console.log("پاسخ سرور:", response.data);
 
       if (response.data.token) {
-        debugger
+        debugger;
         localStorage.setItem("token", response.data.token); // ذخیره توکن
         navigate("/home");
       }
