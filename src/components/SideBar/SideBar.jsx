@@ -6,7 +6,6 @@ function Sidebar() {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      debugger
       const res = await getAllCategories();
       setCategories(res.data);
     };

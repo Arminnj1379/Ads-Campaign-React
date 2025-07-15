@@ -1,38 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { getAllAds } from "../../api/adsService";
 
-function AdList() {
-  const ads = [
-    {
-      id: 1,
-      title: "پاسداران ۱۱۵ متر ۲خواب",
-      subtitle: "خوش‌نو / بازاری شده",
-      price: "۱۷,۰۰۰,۰۰۰ تومان",
-      image: "https://via.placeholder.com/150",
-    },
-    {
-      id: 2,
-      title: "جراغ جلو عقب ۲۰۰۶ کریتی",
-      subtitle: "آرنلس شایگان در یا",
-      price: "۱,۸۰۰,۰۰۰ تومان",
-      image: "https://via.placeholder.com/150",
-    },
-    {
-      id: 3,
-      title: "ویلاهای پیش ساخته مدرن با",
-      subtitle: "کیفیت بالا",
-      price: "۸,۵۰۰,۰۰۰ تومان",
-      image: "https://via.placeholder.com/150",
-    },
-    // ... دیگر آگهی‌ها
-  ];
+const AdList = () => {
+  const [ads, setAds] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchAds = async () => {
+      try {
+        const response = await getAllAds(); // api.get("/Ad/GetAll")
+        setAds(response.data); // یا هرچیزی که در پاسخ داده‌ات هست (مثلا response.data یا response)
+        setLoading(false);
+      } catch (err) {
+        setError("خطا در بارگذاری آگهی‌ها");
+        setLoading(false);
+      }
+    };
+
+    fetchAds();
+  }, []);
+
+  if (loading) return <p>در حال بارگذاری...</p>;
+  if (error) return <p className="text-red-500">{error}</p>;
 
   return (
     <div className="grid grid-cols-3 gap-4">
       {ads.map((ad) => (
         <div key={ad.id} className="bg-gray-800 p-4 rounded shadow-md">
           <img
-            src={ad.image}
+            src={ad.images?.[0] || "https://www.belugacdn.com/images/cdn-performance-testing.png"}
             alt={ad.title}
             className="w-full h-40 object-cover mb-2"
           />
@@ -47,6 +45,6 @@ function AdList() {
       ))}
     </div>
   );
-}
+};
 
 export default AdList;

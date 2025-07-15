@@ -3,7 +3,8 @@ import axios from "axios";
 
 // 🔧 ساخت یک instance از Axios
 const api = axios.create({
-  baseURL: "http://192.168.0.40:85/api/adscampaign",
+  baseURL: //"http://localhost:5027/api/adscampaign",
+  "http://192.168.0.40:85/api/adscampaign",
   timeout: 10000, // زمان انتظار حداکثر 10 ثانیه
   headers: {
     "Content-Type": "application/json",

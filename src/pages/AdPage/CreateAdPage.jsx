@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Listbox } from "@headlessui/react";
 import { saveAds } from "../../api/adsService";
-const categories = [
-  { id: 1, name: "کالای دست‌دوم" },
-  { id: 2, name: "وسایل نقلیه" },
-  { id: 3, name: "خدمات" },
-];
+import { useNavigate } from "react-router-dom";
+import { getAllCategories } from "../../api/SideBarService";
+
+const categoriesdata = async () => await getAllCategories();
+
+const categories = await categoriesdata();
 
 const statuses = [
   { id: "0", name: "فعال" },
@@ -14,6 +15,8 @@ const statuses = [
 ];
 
 export default function CreateAdPage() {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     title: "",
     description: "",
@@ -26,6 +29,25 @@ export default function CreateAdPage() {
 
   const [images, setImages] = useState([]);
   const [preview, setPreview] = useState([]);
+  const [categories, setCategories] = useState([]); // ✅ state برای دسته‌ها
+  const [loading, setLoading] = useState(true); // ✅ حالت loading
+  const [error, setError] = useState(null); // ✅ مدیریت خطا
+
+  // 🔽 بارگذاری دسته‌ها در mount component
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await getAllCategories();
+        setCategories(response.data); // ✅ ذخیره داده در state
+        setLoading(false);
+      } catch (err) {
+        setError("خطا در دریافت دسته‌ها");
+        setLoading(false);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -50,6 +72,7 @@ export default function CreateAdPage() {
       userId: "1", //Todo
       categoryId: Number(form.categoryId?.id),
       status: Number(form.status?.id),
+      image: images[0],
     };
     // for (const key in form) {
     //   if (key === "categoryId") data.append("categoryId", form.categoryId?.id);
@@ -59,10 +82,9 @@ export default function CreateAdPage() {
     // images.forEach((img) => data.append("images", img));
 
     try {
-      saveAds(data);
-    } catch (err) {
-      alert("❌ خطا در ثبت آگهی");
-    }
+      await saveAds(data);
+      navigate("/home");
+    } catch (err) {}
   };
 
   const SelectBox = ({ label, options, selected, onChange }) => (

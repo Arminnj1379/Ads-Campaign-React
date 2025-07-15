@@ -32,7 +32,6 @@ const HomePage = () => {
         {/* Main Content Area */}
         <div className="flex-1 space-y-6">
           <AdList />
-          <AdList />
         </div>
         <Sidebar />
       </div>
