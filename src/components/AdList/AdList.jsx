@@ -28,22 +28,35 @@ const AdList = () => {
   return (
     <div className="grid grid-cols-3 gap-4">
       {ads.map((ad) => (
-        <div key={ad.id} className="bg-neutral-800 p-4 rounded shadow-md border border-gray-700">
-          <img
-            src={
-              process.env.REACT_APP_API_URL + ad.images?.[0] ||
-              "https://www.belugacdn.com/images/cdn-performance-testing.png"
-            }
-            alt={ad.title}
-            className="w-full h-40 object-cover mb-2"
-          />
-          <Link to={`/ad/${ad.id}`}>
-            <h3 className="text-lg font-semibold text-blue-600 hover:underline">
-              {ad.title}
-            </h3>
-          </Link>
-          <p className="text-gray-400">{ad.subtitle}</p>
-          <p className="text-green-400">{ad.price}</p>
+        <div
+          key={ad.id}
+          className="bg-neutral-800 p-3 rounded shadow-md border border-gray-700 flex gap-4 w-full max-w-md h-48"
+        >
+          {/* متن */}
+          <div className="flex flex-col justify-between overflow-hidden ">
+            <Link to={`/ad/${ad.id}`} className="hover:underline">
+              <h3 className="text-white-500 font-semibold text-sm leading-5 mb-1 line-clamp-2">
+                {ad.title}
+              </h3>
+            </Link>
+            <p className="text-gray-500 text-xs">{ad.subtitle}</p>
+            <p className="text-gray-500 text-sm font-medium">{ad.price?.toLocaleString("fa-IR")} تومان</p>
+            <p className="text-gray-500 text-xs">
+              لحظاتی پیش در {ad.address || "نامشخص"}
+            </p>
+          </div>
+          {/* تصویر */}
+          <div className="relative w-36 h-40 flex-shrink-0 flex-grow">
+            <img
+              src={
+                ad.images?.[0]
+                  ? process.env.REACT_APP_API_URL + ad.images[0]
+                  : "https://www.belugacdn.com/images/cdn-performance-testing.png"
+              }
+              alt={ad.title}
+              className="w-full h-full object-cover rounded"
+            />
+          </div>
         </div>
       ))}
     </div>

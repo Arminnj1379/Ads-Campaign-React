@@ -21,6 +21,7 @@ export default function CreateAdPage() {
     categoryId: null,
     status: "",
     userId: "test-user-id-123",
+    location: "",
   });
 
   const [images, setImages] = useState([]);
