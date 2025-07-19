@@ -1,42 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./Header.css";
+import SearchBar from "./SearchBar/SearchBar";
 
 function Header() {
   return (
-    <nav className="bg-gray-800 px-4 py-2 flex justify-between items-center">
-      {/* منوی چپ */}
-      <div className="flex gap-4">
-        <Link to={`/ads/create`}>
-          <button className="bg-red-600 text-white px-4 py-2 rounded">
-            ثبت آگهی
-          </button>
-        </Link>
-        <span className="text-sm bg-red-500 text-white px-1 rounded">
-          پشتیبانی
-        </span>
-        <span>چت و تماس</span>
-        <span>دیوار من</span>
-        <span>دستیار خرد</span>
-      </div>
-
-      {/* بخش جستجو */}
-      <div className="flex gap-2">
-        <input
-          type="text"
-          placeholder="جستجو در همه آگهی‌ها"
-          className="px-4 py-2 rounded-lg border border-gray-700"
-        />
-        <button className="bg-gray-700 text-white px-4 py-2 rounded">
-          دسته‌ها
-        </button>
-      </div>
-
-      {/* منوی راست */}
-      <div className="flex gap-4">
-        <span>تهران</span>
-        <span>دیوار</span>
-      </div>
-    </nav>
+    <div>
+      <nav className="bg-neutral-800 px-4 py-2 flex items-center nav-bar">
+        <div className="basis-1/4 flex gap-4">
+          <span>آگهی های تهران</span>
+        </div>
+        {/* بخش جستجو */}
+        <div className="basis-1/2 flex gap-2">
+          <SearchBar />
+        </div>
+        <div className="basis-1/4 flex gap-4 justify-end">
+          <Link to={`/ads/create`}>
+            <button className="bg-red-600 text-white px-4 py-2 rounded">
+              ثبت آگهی
+            </button>
+          </Link>
+        </div>
+      </nav>
+      <hr className="border-t border-gray-700 w-full"></hr>
+    </div>
   );
 }
 

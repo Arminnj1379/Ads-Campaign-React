@@ -4,10 +4,6 @@ import { saveAds } from "../../api/adsService";
 import { useNavigate } from "react-router-dom";
 import { getAllCategories } from "../../api/SideBarService";
 
-const categoriesdata = async () => await getAllCategories();
-
-const categories = await categoriesdata();
-
 const statuses = [
   { id: "0", name: "فعال" },
   { id: "1", name: "غیر فعال" },

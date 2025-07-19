@@ -1,10 +1,7 @@
-// src/components/Login.js
 import React, { useEffect, useState } from "react";
 import "./Login.css";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import loginapi from "../../api/loginService";
-import AuthLoader from "../../components/AuthLoader/AuthLoader";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -29,7 +26,6 @@ const Login = () => {
     }
 
     try {
-      debugger;
       const response = await loginapi.post("/auth/login", {
         UserName: username,
         Password: password,
@@ -39,7 +35,6 @@ const Login = () => {
       console.log("پاسخ سرور:", response.data);
 
       if (response.data.token) {
-        debugger;
         localStorage.setItem("token", response.data.token); // ذخیره توکن
         navigate("/home");
       }

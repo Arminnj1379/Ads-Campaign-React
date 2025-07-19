@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getAllCategories } from "../../api/SideBarService";
+import CategoryItem from "../Common/Category/CategoryItems";
 
 function Sidebar() {
   const [categories, setCategories] = useState([]);
@@ -12,11 +13,15 @@ function Sidebar() {
     fetchCategories();
   }, []);
   return (
-    <aside className="w-64 bg-gray-800 p-4 rounded shadow-md sticky top-20 h-[calc(100vh-5rem)] overflow-y-auto">
-      <h3 className="text-lg font-bold mb-4">دسته‌ها</h3>
-      <ul className="space-y-2 text-sm">
+    <aside className="w-64 bg-neutral-800 p-4 rounded shadow-md sticky top-20 h-[calc(100vh-5rem)] overflow-y-auto">
+      <h3 className="text-sm mb-4 text-gray-300">دسته‌ها</h3>
+      <ul className="space-y-6 font-bold text-sm text-gray-400">
         {categories.map((cat) => (
-          <li key={cat.id}>{cat.name}</li>
+          <CategoryItem
+            key={cat.name}
+            name={cat.name}
+            iconClass={cat.iconClass}
+          />
         ))}
       </ul>
     </aside>

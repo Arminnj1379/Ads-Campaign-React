@@ -3,8 +3,8 @@ import axios from "axios";
 
 // 🔧 ساخت یک instance از Axios
 const api = axios.create({
-  baseURL: //"http://localhost:5027/api/adscampaign",
-  "http://192.168.0.40:85/api/adscampaign",
+  //"http://localhost:5027/api/adscampaign",
+  baseURL: process.env.REACT_APP_API_URL + "/api/adscampaign",
   timeout: 10000, // زمان انتظار حداکثر 10 ثانیه
   headers: {
     "Content-Type": "application/json",
@@ -43,7 +43,7 @@ api.interceptors.response.use(
         window.dispatchEvent(event);
         console.error("❌ شما مجاز نیستید. لطفاً مجدداً وارد شوید.");
         // مثلاً redirect به صفحه login
-        // window.location.href = '/login';
+        window.location.href = "/login";
         break;
       case 404:
         console.error("❌ مسیر مورد نظر پیدا نشد.");

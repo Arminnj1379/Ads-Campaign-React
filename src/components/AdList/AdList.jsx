@@ -28,9 +28,12 @@ const AdList = () => {
   return (
     <div className="grid grid-cols-3 gap-4">
       {ads.map((ad) => (
-        <div key={ad.id} className="bg-gray-800 p-4 rounded shadow-md">
+        <div key={ad.id} className="bg-neutral-800 p-4 rounded shadow-md border border-gray-700">
           <img
-            src={ad.images?.[0] || "https://www.belugacdn.com/images/cdn-performance-testing.png"}
+            src={
+              process.env.REACT_APP_API_URL + ad.images?.[0] ||
+              "https://www.belugacdn.com/images/cdn-performance-testing.png"
+            }
             alt={ad.title}
             className="w-full h-40 object-cover mb-2"
           />
