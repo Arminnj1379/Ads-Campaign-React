@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { getAllCategories } from "../../api/SideBarService";
 
 const statuses = [
-  { id: "0", name: "فعال" },
-  { id: "1", name: "غیر فعال" },
-  { id: "2", name: "آرشیو" },
+  { id: "0", name: "نو" },
+  { id: "1", name: "در حد نو" },
+  { id: "2", name: "کارکرده" },
 ];
 
 export default function CreateAdPage() {
@@ -70,6 +70,7 @@ export default function CreateAdPage() {
       categoryId: Number(form.categoryId?.id),
       status: Number(form.status?.id),
       image: images[0],
+      location: form.location || "default-location", // اگر موقعیت مکانی خالی بود، مقدار پیش‌فرض قرار می‌دهیم
     };
     // for (const key in form) {
     //   if (key === "categoryId") data.append("categoryId", form.categoryId?.id);
@@ -164,13 +165,11 @@ export default function CreateAdPage() {
             </div>
 
             <div>
-              <label className="block mb-1 text-sm text-gray-400">
-                موقعیت مکانی
-              </label>
+              <label className="block mb-1 text-sm text-gray-400">محله</label>
               <input
-                name="address"
+                name="location"
                 type="text"
-                value={form.address}
+                value={form.location}
                 onChange={handleChange}
                 className="w-full bg-[#1e1e1e] border border-gray-600 focus:border-pink-600 transition-all p-3 rounded-lg text-white"
                 required
@@ -216,6 +215,17 @@ export default function CreateAdPage() {
                 ))}
               </div>
             )}
+            <div>
+              <label className="block mb-1 text-sm text-gray-400">آدرس </label>
+              <input
+                name="address"
+                type="text"
+                value={form.address}
+                onChange={handleChange}
+                className="w-full bg-[#1e1e1e] border border-gray-600 focus:border-pink-600 transition-all p-3 rounded-lg text-white"
+                required
+              />
+            </div>
           </div>
 
           <div>
