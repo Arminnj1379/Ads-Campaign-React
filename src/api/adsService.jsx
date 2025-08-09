@@ -2,7 +2,7 @@ import api from "./httpService";
 
 export const saveAds = (data) => api.postForm("/Ad/add", data);
 
-export const getAllAds = async (data) => await api.get("/Ad/GetAll");
+export const getAllAds = async (data) => await api.post("/Ad/GetAll", data);
 
 export const getByIdAds = (id) => api.post("/Ad/GetById?" + id);
 

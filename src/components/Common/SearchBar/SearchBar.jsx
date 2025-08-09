@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { getAllAds } from "../../../api/adsService";
 
 const SearchBar = () => {
   // State برای ذخیره متن جستجو
@@ -8,12 +9,17 @@ const SearchBar = () => {
   const handleInputChange = (e) => {
     setSearchQuery(e.target.value);
   };
+  const handleSearchClick = async () => {
+    const response = await getAllAds();
+    
+  };
 
   return (
     <div className="bg-gray-700 rounded-lg p-2 w-full max-w-md mt-2">
       <div className="flex items-center space-x-2">
         {/* آیکون جستجو */}
         <svg
+          onClick={handleSearchClick}
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6 text-white"
           fill="none"
