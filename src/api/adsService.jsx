@@ -4,10 +4,10 @@ export const saveAds = (data) => api.postForm("/Ad/add", data);
 
 export const getAllAds = async (data) => await api.post("/Ad/GetAll", data);
 
-export const getByIdAds = (id) => api.post("/Ad/GetById?" + id);
+export const getByIdAds = (id) => api.get("/Ad/GetById?id=" + id);
 
 export const getByUserIdAds = () => api.get("/Ad/GetByUserId");
 
-export const deleteAds = (id) => api.get("/Ad/Delete?" + id);
+export const deleteAds = (id) => api.get("/Ad/Delete?id=" + id);
 
-export const updateAds = (id, data) => api.get("/Ad/Update?" + id, data);
+export const updateAds = (id, data) => api.get("/Ad/Update?id=" + id, data);
