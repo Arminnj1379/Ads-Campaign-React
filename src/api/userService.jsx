@@ -1,10 +1,10 @@
-import api from './httpService';
+import api from "./httpService";
 
-export const getUsers = () => api.get('/user/getall');
+export const getUsers = () => api.get("/user/getall");
 
 export const getUserById = (id) => api.get(`/user/getbyid/${id}`);
 
-export const createUser = (data) => api.post('/User/Create', data);
+export const createUser = async (data) => api.post("/User/Create", data);
 
 // export const updateUser = (id, data) => api.put(`/users/${id}`, data);
 

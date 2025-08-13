@@ -39,7 +39,7 @@ const AdList = () => {
                 {ad.title}
               </h3>
             </Link>
-            <p className="text-gray-500 text-xs">{ad.subtitle}</p>
+            <p className="text-gray-500 text-xs">{ad.title}</p>
             <p className="text-gray-500 text-sm font-medium">{ad.price?.toLocaleString("fa-IR")} تومان</p>
             <p className="text-gray-500 text-xs">
               لحظاتی پیش در {ad.location || "نامشخص"}
