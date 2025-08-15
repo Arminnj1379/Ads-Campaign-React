@@ -2,25 +2,29 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getAllAds } from "../../api/adsService";
 
-const AdList = () => {
+const AdList = ({ ads: propAds }) => {
   const [ads, setAds] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchAds = async () => {
-      try {
-        const response = await getAllAds(); // api.get("/Ad/GetAll")
-        setAds(response.data); // یا هرچیزی که در پاسخ داده‌ات هست (مثلا response.data یا response)
-        setLoading(false);
-      } catch (err) {
-        setError("خطا در بارگذاری آگهی‌ها");
-        setLoading(false);
-      }
-    };
-
-    fetchAds();
-  }, []);
+    if (propAds?.length > 0) {
+      setAds(propAds);
+      setLoading(false);
+    } else {
+      const fetchAds = async () => {
+        try {
+          const response = await getAllAds();
+          setAds(response.data);
+          setLoading(false);
+        } catch (err) {
+          setError("خطا در بارگذاری آگهی‌ها");
+          setLoading(false);
+        }
+      };
+      fetchAds();
+    }
+  }, [propAds]);
 
   if (loading) return <p>در حال بارگذاری...</p>;
   if (error) return <p className="text-red-500">{error}</p>;
@@ -40,7 +44,9 @@ const AdList = () => {
               </h3>
             </Link>
             <p className="text-gray-500 text-xs">{ad.title}</p>
-            <p className="text-gray-500 text-sm font-medium">{ad.price?.toLocaleString("fa-IR")} تومان</p>
+            <p className="text-gray-500 text-sm font-medium">
+              {ad.price?.toLocaleString("fa-IR")} تومان
+            </p>
             <p className="text-gray-500 text-xs">
               لحظاتی پیش در {ad.location || "نامشخص"}
             </p>

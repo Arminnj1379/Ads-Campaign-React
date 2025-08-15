@@ -10,17 +10,18 @@ export default function Register() {
     password: "",
     firstName: "",
     lastName: "",
+    phoneNumber: "",
   });
-  const navigate = useNavigate();
 
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
-    setErrors((prev) => ({ ...prev, [e.target.name]: "" })); // پاک کردن خطا هنگام تایپ
+    setErrors((prev) => ({ ...prev, [e.target.name]: "" }));
   };
 
   const validate = () => {
@@ -36,114 +37,64 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!validate()) return;
 
     try {
-      debugger;
       await createUser(formData);
       AlertService.success("", "کاربر با موفقیت ثبت شد").then(() => {
         navigate("/login");
       });
     } catch (err) {
-      AlertService.error("", "حطا در انجام عملیات");
+      AlertService.error("", "خطا در انجام عملیات");
     }
   };
 
+  const renderInput = (label, name, type = "text", placeholder) => (
+    <div className="mb-4">
+      <label className="block text-gray-300 mb-1">{label}</label>
+      <input
+        type={type}
+        name={name}
+        value={formData[name]}
+        onChange={handleChange}
+        className="w-full p-3 rounded-lg bg-[#1e1e1e] text-white border border-gray-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-400 outline-none transition"
+        placeholder={placeholder}
+      />
+      {errors[name] && (
+        <p className="text-red-500 text-sm mt-1">{errors[name]}</p>
+      )}
+    </div>
+  );
+
   return (
-    <div className="flex justify-center items-center min-h-screen bg-[#1e1e1e]">
+    <div className="flex justify-center items-center min-h-screen bg-[#1e1e1e] px-4">
       <form
         onSubmit={handleSubmit}
-        className="bg-[#2a2a2a] p-8 rounded-2xl shadow-lg w-full max-w-md"
+        className="bg-[#2a2a2a] p-8 rounded-2xl shadow-lg w-full max-w-3xl"
       >
-        <h2 className="text-2xl font-bold text-white mb-6 text-center">
+        <h2 className="text-2xl font-bold text-white mb-8 text-center">
           ثبت نام کاربر
         </h2>
 
-        {/* FirstName */}
-        <div className="mb-4">
-          <label className="block text-gray-300 mb-1">نام</label>
-          <input
-            type="text"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            className="w-full p-3 rounded-lg bg-[#1e1e1e] text-white border border-gray-600 focus:border-blue-500 focus:outline-none"
-            placeholder="نام خود را وارد کنید"
-          />
-          {errors.firstName && (
-            <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>
+        {/* Grid with 2 columns */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {renderInput("نام", "firstName", "text", "نام خود را وارد کنید")}
+          {renderInput(
+            "نام خانوادگی",
+            "lastName",
+            "text",
+            "نام خانوادگی خود را وارد کنید"
           )}
-        </div>
-
-        {/* LastName */}
-        <div className="mb-4">
-          <label className="block text-gray-300 mb-1">نام خانوادگی</label>
-          <input
-            type="text"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            className="w-full p-3 rounded-lg bg-[#1e1e1e] text-white border border-gray-600 focus:border-blue-500 focus:outline-none"
-            placeholder="نام خانوادگی خود را وارد کنید"
-          />
-          {errors.lastName && (
-            <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>
-          )}
-        </div>
-
-        {/* UserName */}
-        <div className="mb-4">
-          <label className="block text-gray-300 mb-1">نام کاربری</label>
-          <input
-            type="text"
-            name="userName"
-            value={formData.userName}
-            onChange={handleChange}
-            className="w-full p-3 rounded-lg bg-[#1e1e1e] text-white border border-gray-600 focus:border-blue-500 focus:outline-none"
-            placeholder="نام کاربری"
-          />
-          {errors.userName && (
-            <p className="text-red-500 text-sm mt-1">{errors.userName}</p>
-          )}
-        </div>
-
-        {/* Email */}
-        <div className="mb-4">
-          <label className="block text-gray-300 mb-1">ایمیل</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full p-3 rounded-lg bg-[#1e1e1e] text-white border border-gray-600 focus:border-blue-500 focus:outline-none"
-            placeholder="ایمیل"
-          />
-          {errors.email && (
-            <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-          )}
-        </div>
-
-        {/* Password */}
-        <div className="mb-6">
-          <label className="block text-gray-300 mb-1">رمز عبور</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            className="w-full p-3 rounded-lg bg-[#1e1e1e] text-white border border-gray-600 focus:border-blue-500 focus:outline-none"
-            placeholder="رمز عبور"
-          />
-          {errors.password && (
-            <p className="text-red-500 text-sm mt-1">{errors.password}</p>
-          )}
+          {renderInput("نام کاربری", "userName", "text", "نام کاربری")}
+          {renderInput("ایمیل", "email", "email", "ایمیل")}
+          {renderInput("شماره تلفن", "phoneNumber", "text", "شماره تلفن")}
+          {renderInput("رمز عبور", "password", "password", "رمز عبور")}
         </div>
 
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg font-bold transition-all"
+          className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg font-bold transition-all transform hover:scale-[1.02]"
         >
           ثبت نام
         </button>

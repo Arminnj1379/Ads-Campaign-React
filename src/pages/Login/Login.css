@@ -1,129 +1,128 @@
 body {
-    margin: 0;
-    font-family: 'Vazirmatn', sans-serif;
-    direction: rtl;
-    text-align: right;
-    background-color: #121212; /* پس‌زمینه کلی دارک */
-    color: #f0f0f0;
+  margin: 0;
+  direction: rtl;
+  text-align: right;
+  background-color: #121212; /* پس‌زمینه کلی دارک */
+  color: #f0f0f0;
 }
 
 .login-container {
-    display: flex;
-    flex-direction: row-reverse;
-    height: 100vh;
-    background-color: #121212; /* دارک */
+  display: flex;
+  flex-direction: row-reverse;
+  height: 100vh;
+  background-color: #121212; /* دارک */
 }
 
 .login-form-wrapper {
-    padding: 40px;
-    width: 100%;
-    max-width: 400px;
-    background-color: #1e1e1e; /* دارک‌تر */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    border-radius: 8px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  padding: 40px;
+  width: 100%;
+  max-width: 400px;
+  background-color: #1e1e1e; /* دارک‌تر */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .login-form-wrapper h2 {
-    margin-bottom: 10px;
-    color: #fff; /* متن سفید */
+  margin-bottom: 10px;
+  color: #fff; /* متن سفید */
 }
 
 .login-form-wrapper p {
-    margin-bottom: 30px;
-    color: #bbb;
-    font-size: 0.9rem;
+  margin-bottom: 30px;
+  color: #bbb;
+  font-size: 0.9rem;
 }
 
 .form-group {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #ddd;
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #ddd;
 }
 
 .form-group input {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #444;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    background-color: #2a2a2a; /* زمینه تیره */
-    color: #fff;
-    direction: ltr;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background-color: #2a2a2a; /* زمینه تیره */
+  color: #fff;
+  direction: ltr;
 }
 
 .btn-login {
-    width: 100%;
-    padding: 12px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .btn-login:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 .error-message {
-    color: #ff6b6b;
-    margin-bottom: 15px;
-    font-size: 0.9rem;
+  color: #ff6b6b;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
 }
 
 .form-footer {
-    margin-top: 20px;
-    font-size: 0.9rem;
-    color: #aaa;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #aaa;
 }
 
 .form-footer a {
-    color: #4da3ff;
-    text-decoration: none;
-    margin-right: 5px;
+  color: #4da3ff;
+  text-decoration: none;
+  margin-right: 5px;
 }
 
 .form-footer a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .login-image {
-    display: none;
+  display: none;
 }
 
 @media (min-width: 768px) {
-    .login-container {
-        flex-direction: row;
-        border-radius: 10px;
-        overflow: hidden;
-    }
+  .login-container {
+    flex-direction: row;
+    border-radius: 10px;
+    overflow: hidden;
+  }
 
-    .login-form-wrapper {
-        width: 50%;
-        padding: 60px 40px;
-    }
+  .login-form-wrapper {
+    width: 50%;
+    padding: 60px 40px;
+  }
 
-    .login-image {
-        display: block;
-        width: 50%;
-        background-color: #1a1a1a;
-    }
+  .login-image {
+    display: block;
+    width: 50%;
+    background-color: #1a1a1a;
+  }
 
-    .login-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 0 10px 10px 0;
-    }
+  .login-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0 10px 10px 0;
+  }
 }

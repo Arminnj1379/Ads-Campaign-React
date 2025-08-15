@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getAllCategories } from "../../api/SideBarService";
 import CategoryItem from "../Common/Category/CategoryItems";
 
-function Sidebar() {
+function Sidebar({ onCategoryClick }) {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -18,9 +18,10 @@ function Sidebar() {
       <ul className="space-y-6 font-bold text-sm text-gray-400">
         {categories.map((cat) => (
           <CategoryItem
-            key={cat.name}
+            key={cat.id}
             name={cat.name}
             iconClass={cat.iconClass}
+            onClick={() => onCategoryClick(cat.name)}
           />
         ))}
       </ul>
