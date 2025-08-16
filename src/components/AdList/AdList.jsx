@@ -10,20 +10,22 @@ const AdList = ({ ads: propAds }) => {
   useEffect(() => {
     if (propAds?.length > 0) {
       setAds(propAds);
-      setLoading(false);
-    } else {
-      const fetchAds = async () => {
-        try {
-          const response = await getAllAds();
-          setAds(response.data);
-          setLoading(false);
-        } catch (err) {
-          setError("خطا در بارگذاری آگهی‌ها");
-          setLoading(false);
-        }
-      };
-      fetchAds();
     }
+    setLoading(false);
+
+    // else {
+    //   const fetchAds = async () => {
+    //     try {
+    //       const response = await getAllAds();
+    //       setAds(response.data);
+    //       setLoading(false);
+    //     } catch (err) {
+    //       setError("خطا در بارگذاری آگهی‌ها");
+    //       setLoading(false);
+    //     }
+    //   };
+    //   fetchAds();
+    // }
   }, [propAds]);
 
   if (loading) return <p>در حال بارگذاری...</p>;
