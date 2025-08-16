@@ -6,6 +6,7 @@ import AuthLoader from "./components/AuthLoader/AuthLoader";
 import AdPage from "./pages/AdPage/AdPage";
 import CreateAdPage from "./pages/AdPage/CreateAdPage";
 import Register from "./pages/Register/Register";
+import UserManagement from "./pages/Admin/UserManagement";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/ad/:id" element={<AdPage />} />
         <Route path="/ads/create" element={<CreateAdPage />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/admin/users" element={<UserManagement />} />
       </Routes>
     </BrowserRouter>
   );
