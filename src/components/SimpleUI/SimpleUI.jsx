@@ -14,11 +14,7 @@ export function Button({ children, onClick, variant = "default" }) {
 }
 
 export function Card({ children }) {
-  return (
-    <div className="bg-white shadow-lg rounded-xl overflow-hidden">
-      {children}
-    </div>
-  );
+  return <div className="shadow-lg rounded-xl overflow-hidden">{children}</div>;
 }
 
 export function CardHeader({ children }) {
