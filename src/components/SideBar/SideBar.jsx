@@ -21,7 +21,7 @@ function Sidebar({ onCategoryClick }) {
             key={cat.id}
             name={cat.name}
             iconClass={cat.iconClass}
-            onClick={() => onCategoryClick(cat.name)}
+            onClick={() => onCategoryClick(cat.id)}
           />
         ))}
       </ul>

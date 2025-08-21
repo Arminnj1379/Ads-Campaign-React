@@ -14,11 +14,14 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  const fetchAds = async (title = "") => {
+  const fetchAds = async (title = "", category = "") => {
+    debugger;
     setLoading(true);
     try {
-      if (title) {
-        const filter = { Title: title };
+      if (title || category) {
+        let filter = {};
+        if (title) filter.Title = title;
+        if (category) filter.Category = category;
         const res = await getAllAds(filter);
         setAds(res.data);
       } else {
@@ -31,7 +34,9 @@ const HomePage = () => {
       setLoading(false);
     }
   };
-
+  const handleCategoryClick = (category) => {
+    fetchAds("", category);
+  };
   const getCurrentUser = async () => {
     var response = await loggedInUser();
     setUser(response.data);
@@ -65,7 +70,7 @@ const HomePage = () => {
 
         {/* Sidebar */}
         <div className="w-full md:w-72">
-          <Sidebar />
+          <Sidebar onCategoryClick={handleCategoryClick} />{" "}
         </div>
       </div>
     </div>
