@@ -9,6 +9,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+* {
+  font-variant-numeric: normal;
+  font-feature-settings: "numr";
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

@@ -3,6 +3,7 @@ import { Listbox } from "@headlessui/react";
 import { saveAds } from "../../api/adsService";
 import { useNavigate } from "react-router-dom";
 import { getAllCategories } from "../../api/SideBarService";
+import { AlertService } from "../../utils/alertService";
 
 const statuses = [
   { id: "0", name: "نو" },
@@ -26,16 +27,16 @@ export default function CreateAdPage() {
 
   const [images, setImages] = useState([]);
   const [preview, setPreview] = useState([]);
-  const [categories, setCategories] = useState([]); // ✅ state برای دسته‌ها
-  const [loading, setLoading] = useState(true); // ✅ حالت loading
-  const [error, setError] = useState(null); // ✅ مدیریت خطا
+  const [categories, setCategories] = useState([]); //  state برای دسته‌ها
+  const [loading, setLoading] = useState(true); //  حالت loading
+  const [error, setError] = useState(null); //  مدیریت خطا
 
-  // 🔽 بارگذاری دسته‌ها در mount component
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const response = await getAllCategories();
-        setCategories(response.data); // ✅ ذخیره داده در state
+        const filtered = response.data.filter((c) => c.name !== "همه");
+        setCategories(filtered);
         setLoading(false);
       } catch (err) {
         setError("خطا در دریافت دسته‌ها");
@@ -70,6 +71,7 @@ export default function CreateAdPage() {
       categoryId: Number(form.categoryId?.id),
       status: Number(form.status?.id),
       image: images[0],
+      number: form.number,
       location: form.location || "default-location", // اگر موقعیت مکانی خالی بود، مقدار پیش‌فرض قرار می‌دهیم
     };
     // for (const key in form) {
@@ -191,7 +193,33 @@ export default function CreateAdPage() {
               onChange={(val) => setForm((f) => ({ ...f, status: val }))}
             />
           </div>
-
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              {" "}
+              <label className="block mb-1 text-sm text-gray-400">آدرس </label>
+              <input
+                name="address"
+                type="text"
+                value={form.address}
+                onChange={handleChange}
+                className="w-full bg-[#1e1e1e] border border-gray-600 focus:border-pink-600 transition-all p-3 rounded-lg text-white"
+                required
+              />
+            </div>
+            <div>
+              <label className="block mb-1 text-sm text-gray-400">
+                شماره تلفن{" "}
+              </label>
+              <input
+                name="number"
+                type="number"
+                value={form.number}
+                onChange={handleChange}
+                className="w-full bg-[#1e1e1e] border border-gray-600 focus:border-pink-600 transition-all p-3 rounded-lg text-white"
+                required
+              />
+            </div>
+          </div>
           <div>
             <label className="block mb-1 text-sm text-gray-400">
               تصاویر آگهی
@@ -215,17 +243,6 @@ export default function CreateAdPage() {
                 ))}
               </div>
             )}
-            <div>
-              <label className="block mb-1 text-sm text-gray-400">آدرس </label>
-              <input
-                name="address"
-                type="text"
-                value={form.address}
-                onChange={handleChange}
-                className="w-full bg-[#1e1e1e] border border-gray-600 focus:border-pink-600 transition-all p-3 rounded-lg text-white"
-                required
-              />
-            </div>
           </div>
 
           <div>

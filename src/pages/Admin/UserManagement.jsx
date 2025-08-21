@@ -34,11 +34,11 @@ export default function UserManagement() {
       if (role === "Admin") {
         // 🔹 اگه ادمین هست، برگردون به یوزر
         await addAdmin(id, "User");
-        setUsers(users.map((u) => (u.id === id ? { ...u, role: "User" } : u)));
+        loadUsers();
       } else {
         // 🔹 اگه یوزره، ادمینش کن
         await addAdmin(id, "Admin");
-        setUsers(users.map((u) => (u.id === id ? { ...u, role: "Admin" } : u)));
+        loadUsers();
       }
     } catch (err) {
       console.error("خطا در تغییر نقش کاربر:", err);

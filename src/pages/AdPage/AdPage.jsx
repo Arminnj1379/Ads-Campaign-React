@@ -91,7 +91,7 @@ const AdPage = () => {
               {adData.creationDateDesc || "امروز"}
             </span>
             <span className="flex items-center gap-1">
-              <FaEye className="text-green-400" /> {adData.viewCount || "۱۲"}{" "}
+              <FaEye className="text-green-400" /> {adData.viewCount || "0"}{" "}
               بازدید
             </span>
           </div>
@@ -118,7 +118,7 @@ const AdPage = () => {
             <p className="flex items-center gap-2">
               <FaListUl className="text-purple-500" />
               <span className="text-gray-400">دسته‌بندی:</span>{" "}
-              {adData.categoryid}
+              {adData.categoryId}
             </p>
             <p className="flex items-center gap-2 col-span-2">
               <FaMapMarkerAlt className="text-red-500" />
